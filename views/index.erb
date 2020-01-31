@@ -1,0 +1,74 @@
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Tareas</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+	</head>
+	<body >
+			<div class="container">
+			<div class="row">
+			<div class="col-sm-12">
+
+
+					<h1 class="text-center" >Lista De Tareas</h1>
+
+
+
+						<form class="col-md-6 col-md-offset-3" action="/" method="post">
+
+
+
+									<div class="form-group">
+										<div class="row">
+			         		<input type="text" id="tarea" name="verbo" class="form-control" placeholder="Ingresa la nueva tarea"/>
+
+
+
+								<button type="submit"  class="btn-primary btn-block">Ingresar  Tarea</button> <br>
+								</div>
+							</div>
+
+
+
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">Nombre</th>
+										<th scope="col">Estado</th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<% @tareas.each do |tarea| %>
+									<tr>
+										<td><%= tarea["title"] %></td>
+										<td>
+											<%if tarea["done"]==true %>
+												Completa
+											<%else %>
+												Incompleta
+											<%end%>
+										</td>
+										<td>
+											<%if !tarea["done"] %>
+													<a class="btn btn-success btn-xs" href="/completar/<%=tarea["id"]%>" role="button">Completar</a>
+											<%end%>
+											<a class="btn btn-default btn-xs" href="/eliminar/<%=tarea["id"]%>" role="button">Eliminar</a>
+										</td>
+									</tr>
+									<% end %>
+								</tbody>
+							</table>
+
+						</form>
+
+			</div>
+			</div>
+		</div>
+
+	</body>
+	</html>
